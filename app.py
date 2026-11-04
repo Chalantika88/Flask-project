@@ -2,21 +2,21 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def home():
-    return "Welcome to Flask!"
+    return "Hello, World!"
 
-@app.route('/user/<username>')
-def show_user(username):
-    return f"Hello, {username}!"
+@app.route("/user/<name>")
+def user(name):
+    return f"User ID: {name}"
 
-@app.route('/user/<int:user_id>')
-def show_user_id(user_id):
-    return f"User ID: {user_id}"
+@app.route("/price/<float:amount>")
+def price(amount):
+    return f"Price: {amount}"
 
-@app.route('/post/<int:post_id>')
-def show_post(post_id):
-    return f"Post ID: {post_id}"
+@app.route("/files/<file_path>")
+def files(file_path):
+    return file_path
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
