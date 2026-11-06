@@ -1,22 +1,22 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def home():
-    return "Hello, World!"
+    return "Welcome to Flask!"
 
-@app.route("/user/<name>")
-def user(name):
-    return f"User ID: {name}"
+@app.route('/search')
+def search():
+    query = request.args.get('q')
+    return f"Search Query: {query}"
 
-@app.route("/price/<float:amount>")
-def price(amount):
-    return f"Price: {amount}"
+@app.route('/user')
+def user():
+    name = request.args.get('name', 'Guest')
+    age = request.args.get('age')
 
-@app.route("/files/<file_path>")
-def files(file_path):
-    return file_path
+    return f"Name: {name}, Age: {age}"
 
 if __name__ == "__main__":
     app.run(debug=True)
